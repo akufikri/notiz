@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { revalidatePath } from "next/cache";
 
 async function getData(userId: string) {
       const data = await prisma.user.findUnique({
@@ -39,6 +40,7 @@ export default async function Settings() {
                         colorSchema: colorSchema ?? undefined
                   }
             })
+            revalidatePath('/', "layout");
       }
 
       return (
