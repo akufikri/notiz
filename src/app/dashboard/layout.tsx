@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client/extension";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react"
 import prisma from "../lib/db";
+import { stripe } from "../lib/stripe";
 
 async function getData({
       email,
@@ -38,6 +39,20 @@ async function getData({
                   }
             })
 
+      }
+      if (!user?.stripeCustomerId) {
+            const data = await stripe.customers.create({
+                  email: email
+            });
+
+            await prisma.user.update({
+                  where: {
+                        id: id
+                  },
+                  data: {
+                        stripeCustomerId: data.id
+                  }
+            })
       }
 }
 
