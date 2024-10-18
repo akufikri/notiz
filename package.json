@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@kinde-oss/kinde-auth-nextjs": "^2.2.0",
+    "@kinde-oss/kinde-auth-nextjs": "^2.3.11",
     "@prisma/client": "^5.11.0",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
